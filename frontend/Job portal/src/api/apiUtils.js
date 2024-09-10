@@ -1,27 +1,59 @@
 export const fetchjobs = async () => {
-  const response = await fetch("/api/jobs");
-  if (!response.ok) {
-    throw new Error("Network response was not okay");
+  try {
+    const response = await fetch("/api/jobs");
+    if (!response.ok) {
+      throw new Error("Network response was not okay");
+    }
+    const data = await response.json();
+    console.log(`fetch data :: `, data);
+    return data.data;
+  } catch (error) {
+    console.log(`Fetch jobs ApiUtil : `, error.message);
+
+    throw error;
   }
-  const data = await response.json();
-  console.log(`fetch data :: `, data);
-  return data.data;
 };
 
 export const postJobs = async (newJob) => {
-  const response = await fetch("/api/jobs", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify(newJob),
-  });
+  try {
+    const response = await fetch("/api/jobs", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newJob),
+    });
 
-  if (!response.ok) throw new Error("Network response was not ok");
-  const data = await response.json();
-  console.log(`post data :: `, data);
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Network response was not okay");
+    }
+    const data = await response.json();
+    console.log(`post data :: `, data);
 
-  return data;
+    return data;
+  } catch (error) {
+    console.log(`Post jobs ApiUtil : `, error.message);
+
+    throw error;
+  }
+};
+
+export const deleteJobs = async (id) => {
+  try {
+    const response = await fetch(`/api/jobs/${id}`, {
+      method: "DELETE",
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Couldn't delete the selected job");
+    }
+    const data = await response.json();
+    console.log(`post data :: `, data);
+  } catch (error) {
+    console.log(`Delete jobs ApiUtil : `, error.message);
+    throw error;
+  }
 };
 
 // ---------User------------

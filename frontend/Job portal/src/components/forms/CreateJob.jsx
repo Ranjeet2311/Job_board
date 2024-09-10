@@ -1,27 +1,45 @@
-import { useDispatch } from "react-redux";
+// import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { postData } from "../../features/jobSlice";
 postData;
+import spinner from "../../assets/images/spin.svg";
 
 export default function CreateJob() {
+  // const [succesful, setSuccesful] = useState(false);
   const dispatch = useDispatch();
+  const { user } = useSelector((state) => state.users);
+  const { error, pending } = useSelector((state) => state.jobs);
 
   const handleAddJob = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const newPost = {
+      userId: user._id,
       title: formData.get("title"),
       description: formData.get("description"),
-      createBy: formData.get("createBy"),
-      company: formData.get("company"),
-      location: formData.get("location"),
+      createBy: user.firstName,
+      company: user.company,
+      location: user.location,
       level: formData.get("level"),
       requirement: formData.get("requirement"),
       benefits: formData.get("benefits"),
     };
 
     dispatch(postData(newPost));
+    e.target.reset();
   };
+
+  // if (!pending && !error) {
+  //   console.log(`Create post NO pending, No Error`);
+  // }
+  // if (success) {
+  //   setSuccesful(true);
+  // }
+
+  // useEffect(() => {
+  //   setSuccesful(false);
+  // }, [setSuccesful]);
 
   return (
     <>
@@ -41,7 +59,7 @@ export default function CreateJob() {
                 required
               />
             </div>
-            <div className="col">
+            {/* <div className="col">
               <label htmlFor="creater" className="form-label">
                 Creater
               </label>
@@ -53,10 +71,10 @@ export default function CreateJob() {
                 name="createBy"
                 required
               />
-            </div>
+            </div> */}
           </div>
         </div>
-        <div className="mb-3">
+        {/* <div className="mb-3">
           <label htmlFor="company" className="form-label">
             Company
           </label>
@@ -68,8 +86,8 @@ export default function CreateJob() {
             name="company"
             // required
           />
-        </div>
-        <div className="mb-3">
+        </div> */}
+        {/* <div className="mb-3">
           <label htmlFor="location" className="form-label">
             Location
           </label>
@@ -81,7 +99,7 @@ export default function CreateJob() {
             name="location"
             // required
           />
-        </div>
+        </div> */}
         <div className="mb-3">
           <label htmlFor="level" className="form-label">
             Level
@@ -92,7 +110,7 @@ export default function CreateJob() {
             id="level"
             placeholder="Senior | Mid-level | Junior level"
             name="level"
-            // required
+            required
           />
         </div>
         <div className="mb-3">
@@ -104,7 +122,7 @@ export default function CreateJob() {
             id="description"
             rows="2"
             name="description"
-            // required
+            required
           ></textarea>
         </div>
         <div className="mb-3">
@@ -116,7 +134,7 @@ export default function CreateJob() {
             id="requirement"
             rows="2"
             name="requirement"
-            // required
+            required
           ></textarea>
         </div>
         <div className="mb-3">
@@ -128,17 +146,40 @@ export default function CreateJob() {
             id="benefits"
             rows="2"
             name="benefits"
-            // required
+            required
           ></textarea>
         </div>
         <div className="pt-3">
           <button
             type="submit"
             className="btn btn-bg w-100 border-0 text-white"
+            disabled={pending}
           >
-            Add new posting
+            {pending ? (
+              <p className="mb-0">
+                Add new posting
+                <span>
+                  <img
+                    className="ms-2"
+                    height={20}
+                    src={spinner}
+                    alt="spinner"
+                  />
+                </span>
+              </p>
+            ) : (
+              "Add new job Post"
+            )}
           </button>
         </div>
+        {error && (
+          <p className="text-center bg-danger text-white p-2 my-2">{error} </p>
+        )}
+        {/* {succesful && (
+          <p className="p-2 bg-success mt-2 w-100 mx-auto text-white text-center">
+            Successfully added job! Add new job post.
+          </p>
+        )} */}
       </form>
     </>
   );

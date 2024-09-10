@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { fetchjobs, postJobs } from "../api/apiUtils";
+import { deleteJobs, fetchjobs, postJobs } from "../api/apiUtils";
 
 const jobs = [
   {
@@ -36,74 +36,145 @@ const jobs = [
 
 const initialState = {
   jobs,
-  createdMessage: { success: true, message: "" },
+  error: null,
+  pending: false,
+  success: false,
 };
 
 export const fetchJobs = createAsyncThunk("api/fetchData", async () => {
-  return await fetchjobs();
+  try {
+    return await fetchjobs();
+  } catch (error) {
+    console.log(`fetchJobs slice failed :`, error.message);
+    return error.message;
+  }
 });
-export const postData = createAsyncThunk("api/postData", async (newJob) => {
-  return await postJobs(newJob);
-});
+export const postData = createAsyncThunk(
+  "api/postData",
+  async (newJob, { rejectWithValue }) => {
+    try {
+      return await postJobs(newJob);
+    } catch (error) {
+      console.log(`postData slice failed :`, error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
+export const deleteData = createAsyncThunk(
+  "api/postData/{id}",
+  async (id, { rejectWithValue }) => {
+    try {
+      return await deleteJobs(id);
+    } catch (error) {
+      console.log(`Delete slice failed :`, error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const jobSlice = createSlice({
   name: "job",
   initialState,
   reducers: {
-    /* eslint-disable-line no-unused-vars*/ getAllPosts: (state, action) =>
-      console.log(`Get all job Post`),
-
-    addJobPost: (state, action) => {
-      const jobData = action.payload;
-
-      if (
-        !jobData.title ||
-        !jobData.description ||
-        !jobData.createBy ||
-        !jobData.company ||
-        !jobData.location ||
-        !jobData.level ||
-        !jobData.requirement ||
-        !jobData.benefits
-      ) {
-        return (
-          (state.createdMessage.success = false),
-          (state.createdMessage.message = "Please add all the fields")
-        );
-      }
-      state.jobs = [...state.jobs, jobData];
-    },
-
-    /* eslint-disable-line no-unused-vars*/ updateJobPost: (state, action) =>
-      console.log(`update Job Post`),
-    /* eslint-disable-line no-unused-vars*/ deleteJobPost: (state, action) =>
-      console.log(`delete Job Post`),
+    // /* eslint-disable-line no-unused-vars*/ getAllPosts: (state, action) =>
+    //   console.log(`Get all job Post`),
+    // addJobPost: (state, action) => {
+    //   const jobData = action.payload;
+    //   if (
+    //     !jobData.title ||
+    //     !jobData.description ||
+    //     !jobData.createBy ||
+    //     !jobData.company ||
+    //     !jobData.location ||
+    //     !jobData.level ||
+    //     !jobData.requirement ||
+    //     !jobData.benefits
+    //   ) {
+    //     return (
+    //       (state.createdMessage.success = false),
+    //       (state.createdMessage.message = "Please add all the fields")
+    //     );
+    //   }
+    //   state.jobs = [...state.jobs, jobData];
+    // },
+    // /* eslint-disable-line no-unused-vars*/ updateJobPost: (state, action) =>
+    //   console.log(`update Job Post`),
+    // /* eslint-disable-line no-unused-vars*/ deleteJobPost: (state, action) =>
+    //   console.log(`delete Job Post`),
   },
 
   extraReducers: (builder) => {
     builder
       .addCase(fetchJobs.pending, (state) => {
-        state.createdMessage.message = "loading";
+        state.pending = true;
+        state.error = null;
+        console.log(`Pending postData state.pending :: `, state.pending);
+        console.log(`Pending postData state.error :: `, state.error);
+        console.log(`Pending postData`);
       })
       .addCase(fetchJobs.fulfilled, (state, action) => {
-        state.createdMessage.message = "succeeded";
-        state.createdMessage.success = true;
+        state.pending = false;
+        state.success = true;
         state.jobs = action.payload;
+        console.log(`fulfilled postData state.pending :: `, state.pending);
+        console.log(`fulfilled postData state.error :: `, state.error);
+        console.log(`fulfilled postData state.success :: `, state.success);
+        console.log(`fulfilled postData`);
       })
       .addCase(fetchJobs.rejected, (state, action) => {
-        state.createdMessage.message = action.error.message;
-        state.createdMessage.success = false;
+        state.pending = false;
+        state.error = action.error;
+        console.log(`rejected postData state.pending :: `, state.pending);
+        console.log(`rejected postData state.error :: `, state.error);
+        console.log(`rejected postData`);
       })
       .addCase(postData.pending, (state) => {
-        state.createdMessage.message = "loading";
+        state.pending = true;
+        state.error = null;
+        state.success = false;
+        console.log(`Pending postData state.pending :: `, state.pending);
+        console.log(`Pending postData state.error :: `, state.error);
+        console.log(`Pending postData`);
       })
       .addCase(postData.fulfilled, (state) => {
-        state.createdMessage.message = "succeeded";
-        state.createdMessage.success = true;
+        state.pending = false;
+        state.success = true;
+        console.log(`fulfilled postData state.pending :: `, state.pending);
+        console.log(`fulfilled postData state.error :: `, state.error);
+        console.log(`fulfilled postData state.success :: `, state.success);
+        console.log(`fulfilled postData`);
       })
       .addCase(postData.rejected, (state, action) => {
-        state.createdMessage.message = action.error.message;
-        state.createdMessage.success = false;
+        state.pending = false;
+        state.success = false;
+        state.error = action.payload;
+        console.log(`rejected postData state.pending :: `, state.pending);
+        console.log(`rejected postData state.error :: `, state.error);
+        console.log(`rejected postData`);
+      })
+      .addCase(deleteData.pending, (state) => {
+        state.pending = true;
+        state.error = null;
+        state.success = false;
+        console.log(`Pending deleteData state.pending :: `, state.pending);
+        console.log(`Pending deleteData state.error :: `, state.error);
+        console.log(`Pending deleteData`);
+      })
+      .addCase(deleteData.fulfilled, (state) => {
+        state.pending = false;
+        state.success = true;
+        console.log(`fulfilled deleteData state.pending :: `, state.pending);
+        console.log(`fulfilled deleteData state.error :: `, state.error);
+        console.log(`fulfilled deleteData state.success :: `, state.success);
+        console.log(`fulfilled postData`);
+      })
+      .addCase(deleteData.rejected, (state, action) => {
+        state.pending = false;
+        state.success = false;
+        state.error = action.payload;
+        console.log(`rejected deleteData state.pending :: `, state.pending);
+        console.log(`rejected deleteData state.error :: `, state.error);
+        console.log(`rejected postData`);
       });
   },
 });

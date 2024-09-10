@@ -16,7 +16,7 @@ function App() {
     if (token) {
       try {
         const decodedToken = jwtDecode(token);
-        console.log(`decodedToken :: `, decodedToken);
+        // console.log(`decodedToken :: `, decodedToken);
 
         // Check if token is expired
         const currentTime = Date.now() / 1000; // Current time in seconds

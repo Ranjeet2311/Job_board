@@ -80,9 +80,12 @@ export const login = async (req, res) => {
 
     // Generating a token ( for session management)
     const useInfo = {
-      email: user.email,
-      password: user.password,
+      _id: foundUser.id,
+      email: foundUser.email,
+      password: foundUser.password,
       firstName: foundUser.firstName,
+      location: foundUser.location,
+      company: foundUser.company,
     };
     const token = jwt.sign({ user: useInfo }, process.env.JWT_SECRET, {
       expiresIn: "36h",

@@ -6,7 +6,7 @@ import spinner from "../../assets/images/spin.svg";
 export default function ProtectedRoute() {
   const [loading, setLoading] = useState(true);
   const isLoggedIn = useSelector((state) => state.users.isLoggedIn);
-  console.log(`protected route : `, isLoggedIn);
+  // console.log(`protected route : `, isLoggedIn);
 
   useEffect(() => {
     const token = localStorage.getItem("accessToken");

@@ -39,6 +39,11 @@ export default function Navbar() {
       <ul className="navbar-nav d-flex justify-content-center align-items-center">
         <li className="nav-item active">
           <NavLink className="nav-link" to="/">
+            Home
+          </NavLink>
+        </li>
+        <li className="nav-item active">
+          <NavLink className="nav-link" to="/jobs">
             Jobs
           </NavLink>
         </li>
@@ -100,6 +105,19 @@ export default function Navbar() {
                       />
                     </span>
                     My Listing
+                  </NavLink>
+                </li>
+                <li className="nav-item">
+                  <NavLink className="nav-link dropdown-item" to="/profile">
+                    <span style={{ height: "20px" }}>
+                      <img
+                        className="me-2 image_filter inline-block image_filter"
+                        height={20}
+                        src={listIcon}
+                        alt="user"
+                      />
+                    </span>
+                    My Profile
                   </NavLink>
                 </li>
                 <li className="nav-item">

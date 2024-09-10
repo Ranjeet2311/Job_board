@@ -1,0 +1,10 @@
+.user_list_item {
+  border: 1px solid grey;
+  padding: 16px 20px;
+  border-radius: 12px;
+  box-shadow: 2px 2px 8px rgb(184, 181, 181);
+
+  &:hover {
+    box-shadow: 2px 2px 8px black;
+  }
+}

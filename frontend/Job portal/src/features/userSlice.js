@@ -44,7 +44,6 @@ export const userSlice = createSlice({
       state.loading = false;
       state.isLoggedIn = true;
       state.user = action.payload.user;
-      console.log(`setUser: state.user : `, state.user);
     },
     logout: (state) => {
       state.user = null;

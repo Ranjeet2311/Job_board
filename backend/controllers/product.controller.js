@@ -32,7 +32,7 @@ export const createJobs = async (req, res) => {
   ) {
     return res
       .status(400)
-      .json({ success: false, message: "please provide all all the details" });
+      .json({ success: false, message: "please provide all the details" });
   }
 
   const newJob = new Job(job); /*check later on with 'product' */

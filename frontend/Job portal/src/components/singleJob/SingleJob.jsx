@@ -1,4 +1,5 @@
 import PropTypes from "prop-types";
+import { truncateText } from "../../utils/textUtils";
 import "./singleJob.scss";
 import localtion from "../../assets/images/location.svg";
 import post from "../../assets/images/post.svg";
@@ -26,12 +27,15 @@ export default function SingleJob({
   requirement,
   // benefits,
 }) {
+  const shortDescription = truncateText(description, 120);
+  const shortRequirement = truncateText(requirement, 130);
+
   return (
     <div className="job-item px-3 px-md-4">
       <h2 className="title text-start">{title}</h2>
       <p className="description mb-1">
         Description:
-        <span>{description}</span>
+        <span> truncateText {shortDescription}</span>
       </p>
       <div className="row my-2">
         <h3 className="description col-12 col-lg-6 mb-0">
@@ -63,7 +67,11 @@ export default function SingleJob({
       <p className="description mb-1">
         Requirements:
         <span>
-          {requirement ? requirement : <span>No requirements defined</span>}
+          {requirement ? (
+            shortRequirement
+          ) : (
+            <span>No requirements defined</span>
+          )}
         </span>
       </p>
       {/* <p className="description mb-0">
