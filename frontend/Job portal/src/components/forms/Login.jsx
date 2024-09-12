@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -8,7 +8,7 @@ export default function Login() {
   const loginForm = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [signupSuccess, setSignupSuccess] = useState(false);
+  // const [signupSuccess, setSignupSuccess] = useState(false);
 
   const { loading, isLoggedIn, error } = useSelector((state) => state.users);
 
@@ -27,12 +27,12 @@ export default function Login() {
       return navigate("/mylisting");
     }
 
-    const signupSuccess = localStorage.getItem("sigupStat");
-    setSignupSuccess(signupSuccess);
+    // const signupSuccess = localStorage.getItem("sigupStat");
+    // setSignupSuccess(signupSuccess);
   }, [isLoggedIn, navigate]);
 
   return (
-    <form className="w-75 mx-auto mt-4" onSubmit={handleLogin} ref={loginForm}>
+    <form onSubmit={handleLogin} ref={loginForm}>
       <div className="row">
         <div className="col-12 col-lg-6">
           <label htmlFor="title" className="form-label">
@@ -86,11 +86,11 @@ export default function Login() {
         {error && (
           <p className="text-danger mt-4 text-center my-0"> {error} </p>
         )}
-        {signupSuccess && (
+        {/* {signupSuccess && (
           <p className="p-2 bg-success mt-2 w-50 mx-auto text-white text-center">
             Signup successful please logn with user email and password
           </p>
-        )}
+        )} */}
       </div>
     </form>
   );

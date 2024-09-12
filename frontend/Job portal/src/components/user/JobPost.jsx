@@ -44,61 +44,57 @@ export default function JobPost({
 
   return (
     <div className="col-12 user_list_item my-3">
-      <div className="row mb-4">
-        <div className="col-12 col-lg-4">
-          <p>Title : {title} </p>
+      <Accordian target={`${title}title`} title={title}>
+        <div className="row mb-4">
+          <div className="col-12 col-lg-4">
+            <p>Title : {title} </p>
+          </div>
+          <div className="col-12 col-lg-4">
+            <p> Admin: {createdBy} </p>
+          </div>
+          <div className="col-12 col-lg-4 d-flex justify-content-end">
+            <button className="btn me-4" to="/" onClick={handleDelete}>
+              <img
+                className="image_filter"
+                height={20}
+                src={trashIcon}
+                alt="trash-icon"
+              />
+            </button>
+            <button className="btn" to="/" onClick={handleEdit}>
+              <img
+                className="image_filter"
+                height={20}
+                src={editIcon}
+                alt="edit-icon"
+              />
+            </button>
+          </div>
         </div>
-        <div className="col-12 col-lg-4">
-          <p> Admin: {createdBy} </p>
+        <div className="row">
+          <div className="col-12 col-md-4">
+            <p>level: {level} </p>
+          </div>
+          <div className="col-12 col-md-4">
+            <p> company: {company} </p>
+          </div>
+          <div className="col-12 col-md-4">
+            <p> Post date: {createdAt} </p>
+          </div>
+          <div className="col-12 col-md-4">
+            <p> Location: {location} </p>
+          </div>
+          <div className="col-12 my-2">
+            Benefits: <span> {benefits}</span>
+          </div>
+          <div className="col-12 my-2">
+            Description: <span> {description}</span>
+          </div>
+          <div className="col-12 my-2">
+            Requirement: <span>{requirement}</span>{" "}
+          </div>
         </div>
-        <div className="col-12 col-lg-4 d-flex justify-content-end">
-          <button className="btn me-4" to="/" onClick={handleDelete}>
-            <img
-              className="image_filter"
-              height={20}
-              src={trashIcon}
-              alt="trash-icon"
-            />
-          </button>
-          <button className="btn" to="/" onClick={handleEdit}>
-            <img
-              className="image_filter"
-              height={20}
-              src={editIcon}
-              alt="edit-icon"
-            />
-          </button>
-        </div>
-      </div>
-      <div className="row">
-        <div className="col-12 col-md-4">
-          <p>level: {level} </p>
-        </div>
-        <div className="col-12 col-md-4">
-          <p> company: {company} </p>
-        </div>
-        <div className="col-12 col-md-4">
-          <p> Post date: {createdAt} </p>
-        </div>
-        <div className="col-12 col-md-4">
-          <p> Location: {location} </p>
-        </div>
-        <div className="col-12">
-          <Accordian target={title} title="benefits">
-            {benefits}
-          </Accordian>
-        </div>
-        <div className="col-12">
-          <Accordian target={title} title="description">
-            {description}
-          </Accordian>
-        </div>
-        <div className="col-12">
-          <Accordian target={title} title="requirement">
-            {requirement}
-          </Accordian>
-        </div>
-      </div>
+      </Accordian>
     </div>
   );
 }

@@ -8,14 +8,14 @@ Accordian.propTypes = {
 };
 
 export default function Accordian({ title, target, children }) {
-  const randomNumber = Math.floor(Math.random() * 1000);
+  const randomNumber = Math.floor(Math.random() * 100000);
   const toggle = target.replaceAll(" ", "") + randomNumber;
   return (
     <div className="accordion my-1" id="accordionExample">
       <div className="accordion-item">
         <h2 className="accordion-header" id="headingOne">
           <button
-            className="accordion-button text-white"
+            className="accordion-button text-"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target={`#${toggle}`}

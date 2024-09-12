@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { postData } from "../../features/jobSlice";
 postData;
 import spinner from "../../assets/images/spin.svg";
+import xss from "xss";
+import { trimWhiteSpace } from "../../utils/textUtils";
 
 export default function CreateJob() {
   // const [succesful, setSuccesful] = useState(false);
@@ -15,18 +17,20 @@ export default function CreateJob() {
 
     const formData = new FormData(e.target);
     const newPost = {
-      userId: user._id,
-      title: formData.get("title"),
-      description: formData.get("description"),
-      createBy: user.firstName,
-      company: user.company,
-      location: user.location,
-      level: formData.get("level"),
-      requirement: formData.get("requirement"),
-      benefits: formData.get("benefits"),
+      userId: xss(trimWhiteSpace(user._id)),
+      title: xss(trimWhiteSpace(formData.get("title"))),
+      description: xss(trimWhiteSpace(formData.get("description"))),
+      createBy: xss(trimWhiteSpace(user.firstName)),
+      company: xss(trimWhiteSpace(user.company)),
+      location: xss(trimWhiteSpace(user.location)),
+      level: xss(trimWhiteSpace(formData.get("level"))),
+      requirement: xss(trimWhiteSpace(formData.get("requirement"))),
+      benefits: xss(trimWhiteSpace(formData.get("benefits"))),
     };
 
     dispatch(postData(newPost));
+    console.log(`New job posted`);
+
     e.target.reset();
   };
 
@@ -102,16 +106,27 @@ export default function CreateJob() {
         </div> */}
         <div className="mb-3">
           <label htmlFor="level" className="form-label">
-            Level
+            Select level
           </label>
-          <input
+          <select
+            name="level"
+            id="level"
+            className="form-select"
+            aria-label="Default select example"
+          >
+            <option selected>Any Level</option>
+            <option value="Entry">Entry</option>
+            <option value="Intermediate">Intermediate</option>
+            <option value="Senior">Senior</option>
+          </select>
+          {/* <input
             type="text"
             className="form-control"
             id="level"
             placeholder="Senior | Mid-level | Junior level"
             name="level"
             required
-          />
+          /> */}
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">

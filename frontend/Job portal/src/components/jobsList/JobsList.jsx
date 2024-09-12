@@ -7,17 +7,18 @@ export default function JobsList() {
   return (
     <>
       {jobs &&
-        jobs.map((item, i) => (
-          <div className="col-12 col-lg-6" key={i}>
+        jobs.map((job, i) => (
+          <div className="col-12 col-md-6 col-lg-4" key={i}>
             <SingleJob
-              title={item.title}
-              description={item.description}
-              createdBy={item.createBy}
-              company={item.company}
-              level={item.level}
-              location={item.location}
-              requirement={item.requirement}
-              benefits={item.benefits}
+              pageLink={`/jobs/${job.title}`}
+              title={job.title}
+              description={job.description}
+              createdBy={job.createBy}
+              company={job.company}
+              level={job.level}
+              location={job.location}
+              requirement={job.requirement}
+              benefits={job.benefits}
             />
           </div>
         ))}

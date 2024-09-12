@@ -13,11 +13,7 @@ export default function Button({
 }) {
   if (isLInk) {
     return (
-      <Link
-        to={to}
-        style={{ ...style }}
-        className={`btn py-1 px-3 ${className}`}
-      >
+      <Link to={to} style={{ ...style }} className={`btn ${className}`}>
         {children}
       </Link>
     );
@@ -25,7 +21,7 @@ export default function Button({
     return (
       <button
         onClick={onButtonClick ? onButtonClick : undefined}
-        className={`btn py-1 px-3 ${className}`}
+        className={`btn ${className}`}
         style={{ ...style }}
       >
         {children}

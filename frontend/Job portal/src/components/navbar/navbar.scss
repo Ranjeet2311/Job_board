@@ -1,0 +1,122 @@
+@import "../../assets/styles/css-variables.scss";
+
+.navbar {
+  // margin-top: 20px;
+  padding: 15px !important;
+  background: transparent !important;
+  // border-radius: 12px 12px 0 0;
+  // background: #141e30;
+  // background: -webkit-linear-gradient(
+  //   to right,
+  //   #141e30,
+  //   #204872,
+  //   #141e30,
+  //   #204872,
+  //   #141e30
+  // );
+  // background: linear-gradient(
+  //   to right,
+  //   #141e30,
+  //   #204872,
+  //   #141e30,
+  //   #204872,
+  //   #141e30
+  // );
+
+  .navbar-brand {
+    margin-right: 60px;
+  }
+
+  .li,
+  .nav-link {
+    // color: white !important;
+    font-size: 16px;
+    line-height: 20px;
+    font-family: $normal-text;
+    font-weight: 500;
+  }
+
+  .navbar-nav {
+    display: flex;
+    justify-content: center;
+    // align-items: center;
+  }
+
+  .active {
+    text-decoration: underline;
+  }
+
+  .nav-item {
+    list-style: none;
+    margin-right: 12px;
+  }
+
+  .logo {
+    width: 100%;
+    height: auto;
+    img {
+      height: 100%;
+      width: 100%;
+    }
+  }
+
+  .btn-group {
+    .btn {
+      color: black !important;
+      &:active {
+        // border: none !important;
+        filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
+      }
+    }
+  }
+
+  .dropdown-menu-end[data-bs-popper] {
+    transition: 0.5s;
+    background: #000046;
+    background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
+    background: linear-gradient(to right, #1cb5e0, #000046);
+    filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
+    right: inherit;
+
+    @include lg {
+      right: 0;
+    }
+  }
+  .dropdown-item {
+    color: white !important;
+
+    &:hover {
+      background: #204872;
+    }
+  }
+
+  .dropdown-toggle {
+    &::after {
+      content: none;
+      border: 0;
+      border-radius: 0;
+    }
+    .profile-image {
+      border-radius: 50%;
+      width: auto;
+      height: 55px;
+      display: block;
+      // margin-bottom: 10px;
+    }
+  }
+
+  .navbar-toggler {
+    border: none;
+  }
+
+  .navbar-toggler-icon {
+    background-image: url("../../assets//images/menu.svg");
+  }
+
+  .logout {
+    background: transparent !important;
+    &:hover {
+      background: #204872 !important;
+    }
+  }
+}

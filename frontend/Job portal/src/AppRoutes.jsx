@@ -9,6 +9,7 @@ import ProtectedRoute from "./components/ProtectedRoute/ProtectedRoute";
 import NotFoundPage from "./views/NotFoundPage";
 import ProfilePage from "./views/ProfilePage";
 import JobsPage from "./views/JobsPage";
+import JobDetails from "./views/JobDetails";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +20,7 @@ export default function AppRoutes() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/jobs" element={<JobsPage />} />
         <Route path="/signup" element={<SignUpPage />} />
+        <Route path="/jobs/:id" element={<JobDetails />} />
         <Route element={<ProtectedRoute />}>
           <Route path="/create" element={<CreatePost />} />
           <Route path="/profile" element={<ProfilePage />} />

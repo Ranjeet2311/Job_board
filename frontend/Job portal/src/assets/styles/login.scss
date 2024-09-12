@@ -1,0 +1,23 @@
+.login-user {
+  .user {
+    margin-top: 30px;
+    width: 400px;
+  }
+}
+
+form {
+  background-color: #fff;
+  box-shadow: 12px 12px 32px rgba(0, 87, 255, 0.2);
+  padding: 40px;
+  border-radius: 12px;
+
+  label {
+    font-weight: 700;
+  }
+
+  button {
+    &:hover {
+      transform: scale(1) !important;
+    }
+  }
+}

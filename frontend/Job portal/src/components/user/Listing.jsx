@@ -15,7 +15,6 @@ export default function Listing() {
         userPostings.map((post) => {
           return (
             <>
-              <p> {post.createBy} </p>
               <JobPost
                 key={post._id}
                 userId={post._id}

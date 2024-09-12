@@ -1,7 +1,13 @@
+@import "../../assets/styles/css-variables.scss";
+
 button,
 .btn {
   color: white !important;
-  background: #0f2027;
-  background: -webkit-linear-gradient(to right, #2c5364, #203a43, #0f2027);
-  background: linear-gradient(to right, #2c5364, #203a43, #0f2027);
+  background: rgb(0, 87, 255) !important;
+  font-family: $normal-text;
+  transition: 0.5s;
+
+  &:hover {
+    transform: scale(1.1);
+  }
 }

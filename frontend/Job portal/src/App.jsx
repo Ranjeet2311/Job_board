@@ -4,6 +4,7 @@ import "./assets/styles/general.scss";
 import { jwtDecode } from "jwt-decode";
 import { logout, setUser } from "./features/userSlice";
 import { useDispatch } from "react-redux";
+import Footer from "./components/footer/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -37,8 +38,9 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className="container-fluid app">
+    <div className="container-fluid app px-0">
       <AppRoutes />
+      <Footer />
     </div>
   );
 }

@@ -5,8 +5,10 @@ import localtion from "../../assets/images/location.svg";
 import post from "../../assets/images/post.svg";
 import user from "../../assets/images/user.svg";
 import code from "../../assets/images/code.svg";
+import { Link } from "react-router-dom";
 
 SingleJob.propTypes = {
+  pageLink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
@@ -18,6 +20,7 @@ SingleJob.propTypes = {
 };
 
 export default function SingleJob({
+  pageLink,
   title,
   description,
   createdBy,
@@ -29,38 +32,39 @@ export default function SingleJob({
 }) {
   const shortDescription = truncateText(description, 120);
   const shortRequirement = truncateText(requirement, 130);
+  const shortLocation = truncateText(location, 6);
 
   return (
-    <div className="job-item px-3 px-md-4">
+    <Link to={pageLink} className="job-item px-3 px-md-4">
       <h2 className="title text-start">{title}</h2>
-      <p className="description mb-1">
+      <p className="description">
         Description:
         <span> truncateText {shortDescription}</span>
       </p>
-      <div className="row my-2">
-        <h3 className="description col-12 col-lg-6 mb-0">
+      <div className="row my-2 card-mid">
+        <h3 className="description col-12 col-xl-6 mb-0">
           <span>
             <img src={user} alt="location-icon" />
           </span>
           : <span> {createdBy}</span>
         </h3>
-        <h3 className="description col-12 col-lg-6 mb-0">
+        <h3 className="description col-12 col-xl-6 mb-0">
           <span>
             <img src={post} alt="location-icon" />
           </span>
           : <span> {company}</span>
         </h3>
-        <h3 className="description col-12 col-lg-6 mb-0">
+        <h3 className="description col-12 col-xl-6 mb-0">
           <span>
             <img src={code} alt="location-icon" />
           </span>
           : <span> {level}</span>
         </h3>
-        <h3 className="description col-12 col-lg-6 mb-0">
+        <h3 className="description col-12 col-xl-6 mb-0">
           <span>
             <img src={localtion} alt="location-icon" />
           </span>
-          : <span> {location}</span>
+          : <span>{shortLocation} </span>
         </h3>
       </div>
 
@@ -78,6 +82,6 @@ export default function SingleJob({
         Benefits:
         <span>{benefits}</span>
       </p> */}
-    </div>
+    </Link>
   );
 }

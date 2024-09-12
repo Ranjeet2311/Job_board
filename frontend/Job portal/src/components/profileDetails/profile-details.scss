@@ -1,0 +1,20 @@
+.profile {
+  box-shadow: 12px 12px 32px rgba(0, 87, 255, 0.2);
+  padding: 40px 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  h1 {
+    text-align: center;
+  }
+  h2 {
+    font-weight: 700;
+    margin: 8px auto;
+  }
+  h3 {
+    font-weight: 600;
+    margin: 8px auto;
+  }
+}

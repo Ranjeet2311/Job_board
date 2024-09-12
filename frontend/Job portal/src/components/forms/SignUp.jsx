@@ -2,6 +2,8 @@ import { useRef, useState } from "react";
 import { register } from "../../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import xss from "xss";
+import { trimWhiteSpace } from "../../utils/textUtils";
 import spinner from "../../assets/images/spin.svg";
 
 export default function SignUp() {
@@ -17,12 +19,12 @@ export default function SignUp() {
     const signupData = signupForm.current;
 
     const newUser = {
-      firstName: signupData["firstName"].value,
-      lastName: signupData["lastName"].value,
-      email: signupData["email"].value,
-      password: signupData["password"].value,
-      company: signupData["company"].value,
-      location: signupData["location"].value,
+      firstName: xss(trimWhiteSpace(signupData["firstName"].value)),
+      lastName: xss(trimWhiteSpace(signupData["lastName"].value)),
+      email: xss(trimWhiteSpace(signupData["email"].value)),
+      password: xss(trimWhiteSpace(signupData["password"].value)),
+      company: xss(trimWhiteSpace(signupData["company"].value)),
+      location: xss(trimWhiteSpace(signupData["location"].value)),
     };
 
     if (newUser.password.length < 6) {
@@ -42,11 +44,7 @@ export default function SignUp() {
 
   return (
     <>
-      <form
-        className="w-75 mx-auto mt-4"
-        ref={signupForm}
-        onSubmit={handleSignup}
-      >
+      <form ref={signupForm} onSubmit={handleSignup}>
         <div className="row mb-3">
           <div className="col-12 col-lg-6">
             <label htmlFor="firstName" className="form-label">

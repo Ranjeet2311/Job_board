@@ -1,0 +1,30 @@
+@import "./css-variables.scss";
+
+.home-hero {
+  .desc {
+    font-size: 26px !important;
+    line-height: 46px !important;
+    font-family: $normal-text;
+    // font-weight: 400;
+    margin: 30px auto;
+  }
+}
+
+.slider_wrap {
+  margin-top: 80px;
+  margin-bottom: 80px;
+
+  .slider_image {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .company_img {
+      width: 100px;
+    }
+  }
+}
+
+.react-multiple-carousel__arrow {
+  display: none !important;
+}
