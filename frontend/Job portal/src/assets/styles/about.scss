@@ -1,0 +1,24 @@
+@import "../styles/css-variables.scss";
+
+.about-slider {
+  padding-top: 40px;
+  // height: 400px;
+  // margin-bottom: 200px;
+
+  @include md {
+    padding-top: 140px;
+    padding-bottom: 160px;
+  }
+
+  @include md {
+    margin-top: 80px;
+  }
+
+  h2 {
+    margin-bottom: 60px;
+
+    @include md {
+      margin-bottom: 60px;
+    }
+  }
+}

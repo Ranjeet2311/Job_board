@@ -1,25 +1,20 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.scss";
 import userIcon from "../../assets/images/user.svg";
-// import refreshIcon from "../../assets/images/refresh.svg";
 import addNewIcon from "../../assets/images/file-add.svg";
 import logInIcon from "../../assets/images/log-in.svg";
 import logOutIcon from "../../assets/images/log-out.svg";
 import listIcon from "../../assets/images/list.svg";
-// import Button from "../buttons/Button";
 import { useDispatch, useSelector } from "react-redux";
-// import { fetchJobs } from "../../features/jobSlice";
 import { logout } from "../../features/userSlice";
 import logo from "../../assets/images/logo.svg";
-import avatar from "../../assets/images/avatar.svg";
+import avatar from "../../assets/images/avatar.png";
 
 const routes = [
   { linkText: "Home", link: "/" },
+  { linkText: "About us", link: "/about-us" },
   { linkText: "Jobs", link: "/jobs" },
   { linkText: "Career", link: "/career" },
-  { linkText: "About us", link: "/about-us" },
-  // { linkText: "Signup", link: "/signup" },
-  // { linkText: "Login", link: "/login" },
 ];
 
 const userRoutes = [
@@ -88,7 +83,9 @@ export default function Navbar() {
           <div className="btn-group ">
             <button
               type="button"
-              className="dropdown-toggle btn d-flex justify-content-center justify-content-lg-end px-0"
+              className={`dropdown-toggle btn d-flex justify-content-center justify-content-lg-end px-0 ${
+                isLoggedIn && "img-bg"
+              } `}
               data-bs-toggle="dropdown"
               aria-expanded="false"
             >
@@ -122,7 +119,7 @@ export default function Navbar() {
                         to={route.link}
                       >
                         <img
-                          className="me-2 image_filter inline-block"
+                          className="me-2 inline-block"
                           height={25}
                           src={route.img}
                           alt="user"
@@ -139,7 +136,7 @@ export default function Navbar() {
                     >
                       <span>
                         <img
-                          className="me-2 image_filter inline-block "
+                          className="me-2 inline-block "
                           height={25}
                           src={logOutIcon}
                           alt="user"
@@ -159,7 +156,7 @@ export default function Navbar() {
                     >
                       <span>
                         <img
-                          className="me-2 image_filter inline-block"
+                          className="me-2 inline-block"
                           height={25}
                           src={logInIcon}
                           alt="user"

@@ -1,10 +1,35 @@
-.user_list_item {
-  border: 1px solid grey;
-  padding: 16px 20px;
-  border-radius: 12px;
-  box-shadow: 2px 2px 8px rgb(184, 181, 181);
+@import "../../assets/styles/css-variables.scss";
 
-  &:hover {
-    box-shadow: 2px 2px 8px black;
+.user_list {
+  .user_list_item {
+    border: 1px solid grey;
+    padding: 16px 20px;
+    border-radius: 12px;
+    box-shadow: 2px 2px 8px rgb(184, 181, 181);
+
+    &:hover {
+      box-shadow: 2px 2px 8px black;
+    }
+
+    h2 {
+      font-size: 18px !important;
+      line-height: 20px;
+      font-weight: 800 !important ;
+
+      @include md {
+        font-size: 24px !important;
+        line-height: 26px;
+      }
+    }
+    h2 {
+      font-size: 18px !important;
+      line-height: 20px;
+      font-weight: 800 !important ;
+
+      @include md {
+        font-size: 24px !important;
+        line-height: 26px;
+      }
+    }
   }
 }

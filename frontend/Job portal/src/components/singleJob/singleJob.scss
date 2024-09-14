@@ -22,10 +22,15 @@
   }
 
   .title {
-    font-size: 28px;
-    line-height: 38px;
+    font-size: 22px !important;
+    line-height: 24px;
     font-weight: 800;
     color: rgba(0, 87, 255, 1);
+
+    @include md {
+      font-size: 32px !important;
+      line-height: 34px;
+    }
   }
   .description {
     font-weight: 600 !important;

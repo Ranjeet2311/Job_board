@@ -60,48 +60,60 @@
     }
   }
 
-  .btn-group {
-    .btn {
-      color: black !important;
-      &:active {
-        // border: none !important;
-        filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
-      }
-    }
-  }
+  // .btn-group {
+  //   .btn {
+  //     color: black !important;
+  //     background: transparent !important;
+  //     border: 1px solid rgba(0, 87, 255, 0.2);
+  //     &:active {
+  //       // border: none !important;
+  //       filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
+  //     }
+  //   }
+  // }
 
   .dropdown-menu-end[data-bs-popper] {
     transition: 0.5s;
-    background: #000046;
-    background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
-    background: linear-gradient(to right, #1cb5e0, #000046);
-    filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
+    // background: #000046;
+    // background: -webkit-linear-gradient(to right, #1cb5e0, #000046);
+    // background: linear-gradient(to right, #1cb5e0, #000046);
+    // filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
     right: inherit;
 
     @include lg {
       right: 0;
     }
   }
-  .dropdown-item {
-    color: white !important;
 
-    &:hover {
-      background: #204872;
-    }
+  .img-bg {
+    // border-color: blue !important;
+    border: 1px solid rgba(0, 87, 255, 1);
+    background-color: aquamarine !important;
   }
 
   .dropdown-toggle {
+    border-radius: 50%;
+    width: 50px;
+    max-height: 50px;
+    font-size: 16px !important;
+    color: black !important;
+    border-color: white !important;
+    &:active {
+      // border: none !important;
+      border-color: white !important;
+      // filter: drop-shadow(0 0 80px rgba(0, 12, 232, 0.6666666667));
+    }
+
     &::after {
       content: none;
       border: 0;
       border-radius: 0;
     }
+
     .profile-image {
-      border-radius: 50%;
-      width: auto;
-      height: 55px;
-      display: block;
-      // margin-bottom: 10px;
+      width: 100% !important;
+      height: 100%;
+      object-fit: contain;
     }
   }
 
@@ -114,9 +126,10 @@
   }
 
   .logout {
+    color: black !important ;
     background: transparent !important;
-    &:hover {
-      background: #204872 !important;
-    }
+    // &:focus {
+    //   color: white !important;
+    // }
   }
 }

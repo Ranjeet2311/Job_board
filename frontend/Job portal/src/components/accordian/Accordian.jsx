@@ -15,7 +15,7 @@ export default function Accordian({ title, target, children }) {
       <div className="accordion-item">
         <h2 className="accordion-header" id="headingOne">
           <button
-            className="accordion-button text-"
+            className="accordion-button btn-blue text-"
             type="button"
             data-bs-toggle="collapse"
             data-bs-target={`#${toggle}`}

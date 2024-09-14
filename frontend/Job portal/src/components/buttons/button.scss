@@ -1,11 +1,24 @@
 @import "../../assets/styles/css-variables.scss";
 
-button,
-.btn {
+.btn-blue {
   color: white !important;
   background: rgb(0, 87, 255) !important;
   font-family: $normal-text;
   transition: 0.5s;
+  border: 1px solid rgb(0, 87, 255);
+  box-shadow: -1px 2px 4px rgba(159, 177, 212, 0.6);
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.btn-white {
+  color: black !important;
+  background: white !important;
+  font-family: $normal-text;
+  transition: 0.5s;
+  border: 1px solid rgba(159, 177, 212, 0.2) !important;
+  box-shadow: -1px 2px 4px rgba(159, 177, 212, 0.6);
 
   &:hover {
     transform: scale(1.1);

@@ -133,7 +133,7 @@ export default function SignUp() {
         <div className="pt-3">
           <button
             type="submit"
-            className="btn btn-bg w-100 border-0 text-white"
+            className="btn btn-blue w-100 border-0 text-white"
           >
             {loading ? (
               <p className="mb-0">

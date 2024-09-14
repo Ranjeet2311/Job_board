@@ -1,10 +1,38 @@
-.accordion-button {
-  font-size: 18px;
-  line-height: 24px;
-  font-weight: 700;
-  text-transform: capitalize;
+@import "../../assets/styles/css-variables.scss";
 
-  &::after {
-    filter: invert(1);
+.accordion {
+  .btn,
+  button {
+    &:hover {
+      transform: scale(1);
+    }
+  }
+
+  .accordion-item {
+    .accordion-header {
+      .accordion-button {
+        font-size: 18px;
+        line-height: 22px;
+        font-weight: 700;
+        text-transform: capitalize;
+        font-family: $head-font;
+
+        &::after {
+          filter: invert(1);
+          background-image: url("../../assets/images/arrow_down.svg") !important;
+        }
+
+        &:not(.collapsed)::after {
+          background-image: url("../../assets/images/arrow_up.svg") !important;
+        }
+
+        @include md {
+          font-size: 36px;
+          line-height: 32px;
+          font-weight: 700;
+          // font-family: $head-font;
+        }
+      }
+    }
   }
 }

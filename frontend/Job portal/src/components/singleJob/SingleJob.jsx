@@ -42,30 +42,30 @@ export default function SingleJob({
         <span> truncateText {shortDescription}</span>
       </p>
       <div className="row my-2 card-mid">
-        <h3 className="description col-12 col-xl-6 mb-0">
+        <div className="description col-6 d-flex align-items-center mb-0">
           <span>
-            <img src={user} alt="location-icon" />
+            <img src={user} alt="location-icon" className="mb-0" />
           </span>
-          : <span> {createdBy}</span>
-        </h3>
-        <h3 className="description col-12 col-xl-6 mb-0">
+          <span> {createdBy}</span>
+        </div>
+        <div className="description col-6 d-flex align-items-center mb-0">
           <span>
-            <img src={post} alt="location-icon" />
+            <img src={post} alt="location-icon" className="mb-0" />
           </span>
-          : <span> {company}</span>
-        </h3>
-        <h3 className="description col-12 col-xl-6 mb-0">
+          <span> {company}</span>
+        </div>
+        <div className="description col-6 d-flex align-items-center  mb-0">
           <span>
-            <img src={code} alt="location-icon" />
+            <img src={code} alt="location-icon" className="mb-0" />
           </span>
-          : <span> {level}</span>
-        </h3>
-        <h3 className="description col-12 col-xl-6 mb-0">
+          <span> {level}</span>
+        </div>
+        <div className="description col-6 d-flex align-items-center  mb-0">
           <span>
-            <img src={localtion} alt="location-icon" />
+            <img src={localtion} alt="location-icon" className="mb-0" />
           </span>
-          : <span>{shortLocation} </span>
-        </h3>
+          <span>{shortLocation} </span>
+        </div>
       </div>
 
       <p className="description mb-1">

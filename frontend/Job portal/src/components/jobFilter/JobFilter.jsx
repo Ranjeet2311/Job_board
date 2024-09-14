@@ -9,17 +9,21 @@ export default function JobFilter() {
     dispatch(fetchJobs());
   };
   return (
-    <div className="col-12 filter-section">
+    <div className="col-12 filter-section ">
       <div className="row">
         <div className="col-12 col-md-6">
-          <Button onButtonClick={FetchDataHandler} isLInk={false}>
+          <Button
+            onButtonClick={FetchDataHandler}
+            isLInk={false}
+            className="btn-blue"
+          >
             Refresh job list
           </Button>
         </div>
-        <div className="col-12 col-md-6 mt-2 mt-lg-0 d-flex justify-content-lg-end">
+        <div className="col-12 col-md-6 mt-2 mt-md-0 d-flex justify-content-lg-end">
           <div className="dropdown">
             <button
-              className="btn btn-secondary dropdown-toggle"
+              className="btn btn-blue dropdown-toggle"
               type="button"
               data-bs-toggle="dropdown"
               aria-expanded="false"

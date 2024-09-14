@@ -11,7 +11,7 @@ export default function LoginPage() {
           <img src={userImage} alt="user" className="user" />
         </div>
         <div className="col-12 col-md-6">
-          <h2 className="text-center mb-4">Log in to your account</h2>
+          <h2 className="text-center mb-2 mb-lg-4">Log in to your account</h2>
           <Login />
           <p className="text-center mt-4">
             No account yet

@@ -12,17 +12,18 @@ BreadCrumbs.propTypes = {
 export default function BreadCrumbs({ backText, backLink, jobTitle, jobLink }) {
   return (
     <div className="text-center mb-3 d-flex align-items-center btn  mt-0 p-2 w-100">
-      <img
-        height={20}
-        src={arrowIcon}
-        alt="back arrow"
-        className="image_filter"
-      />
-      <Link className="text-decoration-none text-white" to={backLink}>
+      <img height={20} src={arrowIcon} alt="back arrow" />
+      <Link
+        className="text-decoration-none btn-blue px-3 py-1  rounded"
+        to={backLink}
+      >
         {backText}
       </Link>
       <span className="mx-2"> / </span>
-      <Link className="text-decoration-none text-white" to={jobLink}>
+      <Link
+        className="text-decoration-none btn-blue px-3 py-1  rounded"
+        to={jobLink}
+      >
         {jobTitle}
       </Link>
     </div>

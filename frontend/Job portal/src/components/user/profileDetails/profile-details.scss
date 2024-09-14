@@ -1,0 +1,76 @@
+@import "../../../assets/styles/css-variables.scss";
+
+.profile {
+  box-shadow: 12px 12px 32px rgba(0, 87, 255, 0.2);
+  padding: 20px;
+
+  // flex-direction: column;
+
+  .profile-item {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    padding: 4px 0px;
+    margin-top: 12px;
+
+    @include md {
+      flex-direction: row;
+      justify-content: start;
+    }
+
+    p {
+      font-size: 16px !important;
+      line-height: 20px;
+      margin: 0;
+      width: -webkit-fill-available;
+
+      @include md {
+        width: fit-content;
+      }
+    }
+    .title {
+      font-size: 16px !important;
+      font-weight: 600;
+      line-height: 20px;
+      margin: 0;
+      width: -webkit-fill-available;
+
+      @include md {
+        width: fit-content;
+      }
+    }
+
+    .profile_img {
+      height: 30px !important;
+      width: auto;
+      object-fit: cover;
+      margin-right: 16px;
+      height: 50px;
+    }
+
+    .profile-wrap {
+      position: relative;
+
+      .img {
+        height: 40px !important;
+        border-radius: 50%;
+        border: 2px solid rgb(237, 237, 237) !important;
+      }
+      .status {
+        position: absolute;
+        display: block;
+        width: 15px;
+        height: 15px;
+        background: #00da00;
+        border: 1px solid #08b508;
+        border-radius: 50%;
+        bottom: 0;
+        left: 0;
+
+        @include md {
+        }
+      }
+    }
+  }
+}

@@ -10,6 +10,8 @@ import NotFoundPage from "./views/NotFoundPage";
 import ProfilePage from "./views/ProfilePage";
 import JobsPage from "./views/JobsPage";
 import JobDetails from "./views/JobDetails";
+import Career from "./views/Career";
+import About from "./views/About";
 
 export default function AppRoutes() {
   return (
@@ -19,6 +21,8 @@ export default function AppRoutes() {
         <Route index element={<Home />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/jobs" element={<JobsPage />} />
+        <Route path="/career" element={<Career />} />
+        <Route path="/about-us" element={<About />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/jobs/:id" element={<JobDetails />} />
         <Route element={<ProtectedRoute />}>

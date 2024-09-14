@@ -1,0 +1,23 @@
+.job-details {
+  .key_wrap {
+    background: linear-gradient(to right, #0057ff, #0c25b0f6, #0057ff);
+    // background: #0057ff !important;
+    padding: 20px 20px;
+    border-radius: 12px;
+
+    .key_details {
+      font-size: 28px !important;
+      font-weight: 700;
+      color: white;
+      margin: 12px;
+
+      img {
+        filter: invert(1);
+        margin-right: 22px !important;
+      }
+    }
+    .description {
+      font-size: 26px !important;
+    }
+  }
+}
