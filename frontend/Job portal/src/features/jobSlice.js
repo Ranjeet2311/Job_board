@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-import { deleteJobs, fetchjobs, postJobs } from "../api/apiUtils";
+import { deleteJobs, fetchjobs, postJobs, updateJobs } from "../api/apiUtils";
 
 const jobs = [
   {
@@ -39,6 +39,7 @@ const initialState = {
   error: null,
   pending: false,
   success: false,
+  jobLength: null,
 };
 
 export const fetchJobs = createAsyncThunk("api/fetchData", async () => {
@@ -53,7 +54,10 @@ export const postData = createAsyncThunk(
   "api/postData",
   async (newJob, { rejectWithValue }) => {
     try {
-      return await postJobs(newJob);
+      const data = await postJobs(newJob);
+      console.log(`data :: `, data);
+
+      return data;
     } catch (error) {
       console.log(`postData slice failed :`, error.message);
       return rejectWithValue(error.message);
@@ -71,11 +75,58 @@ export const deleteData = createAsyncThunk(
     }
   }
 );
+export const updateData = createAsyncThunk(
+  "api/postData/update/{id}",
+  async ({ id, updateData }, { rejectWithValue }) => {
+    try {
+      return await updateJobs(id, updateData);
+    } catch (error) {
+      console.log(`Delete slice failed :`, error.message);
+      return rejectWithValue(error.message);
+    }
+  }
+);
 
 export const jobSlice = createSlice({
   name: "job",
   initialState,
   reducers: {
+    hideToast: (state) => {
+      setTimeout(() => {
+        state.success = !state.success;
+      }, 1500);
+
+      console.log(`Hide toast clicked`);
+    },
+
+    sortByAlphabeticalOrderAToZ: (state) => {
+      const sorted = [...state.jobs].sort((a, b) =>
+        a.title.localeCompare(b.title)
+      );
+      return {
+        ...state,
+        jobs: sorted,
+      };
+    },
+    sortByAlphabeticalOrderZToA: (state) => {
+      const sorted = [...state.jobs].sort((a, b) =>
+        b.title.localeCompare(a.title)
+      );
+      return {
+        ...state,
+        jobs: sorted,
+      };
+    },
+    sortByTimestamp: (state) => {
+      const sorted = [...state.jobs].sort(
+        (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+      );
+      return {
+        ...state,
+        jobs: sorted,
+      };
+    },
+
     // /* eslint-disable-line no-unused-vars*/ getAllPosts: (state, action) =>
     //   console.log(`Get all job Post`),
     // addJobPost: (state, action) => {
@@ -116,6 +167,7 @@ export const jobSlice = createSlice({
         state.pending = false;
         state.success = true;
         state.jobs = action.payload;
+        state.jobLength = state.jobs.length;
         console.log(`fulfilled postData state.pending :: `, state.pending);
         console.log(`fulfilled postData state.error :: `, state.error);
         console.log(`fulfilled postData state.success :: `, state.success);
@@ -175,10 +227,38 @@ export const jobSlice = createSlice({
         console.log(`rejected deleteData state.pending :: `, state.pending);
         console.log(`rejected deleteData state.error :: `, state.error);
         console.log(`rejected postData`);
+      })
+      .addCase(updateData.pending, (state) => {
+        state.pending = true;
+        state.error = null;
+        state.success = false;
+        console.log(`Pending updateData state.pending :: `, state.pending);
+        console.log(`Pending updateData state.error :: `, state.error);
+        console.log(`Pending updateData`);
+      })
+      .addCase(updateData.fulfilled, (state) => {
+        state.pending = false;
+        state.success = true;
+        console.log(`fulfilled updateData state.pending :: `, state.pending);
+        console.log(`fulfilled updateData state.error :: `, state.error);
+        console.log(`fulfilled updateData state.success :: `, state.success);
+        console.log(`fulfilled postData`);
+      })
+      .addCase(updateData.rejected, (state, action) => {
+        state.pending = false;
+        state.success = false;
+        state.error = action.payload;
+        console.log(`rejected updateData state.pending :: `, state.pending);
+        console.log(`rejected updateData state.error :: `, state.error);
+        console.log(`rejected updateData`);
       });
   },
 });
 
-export const { getAllPosts, addJobPost, updateJobPost, deleteJobPost } =
-  jobSlice.actions;
+export const {
+  hideToast,
+  sortByAlphabeticalOrderAToZ,
+  sortByAlphabeticalOrderZToA,
+  sortByTimestamp,
+} = jobSlice.actions;
 export default jobSlice.reducer;

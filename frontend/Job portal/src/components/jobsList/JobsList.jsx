@@ -4,6 +4,8 @@ import SingleJob from "../singleJob/singleJob";
 
 export default function JobsList() {
   const { jobs } = useSelector((state) => state.jobs);
+  console.log(`Job list page : `, jobs);
+
   return (
     <>
       {jobs &&
@@ -14,6 +16,7 @@ export default function JobsList() {
               title={job.title}
               description={job.description}
               createdBy={job.createBy}
+              createdAt={job.createdAt}
               company={job.company}
               level={job.level}
               location={job.location}

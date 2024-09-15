@@ -8,12 +8,16 @@ import teamPicF from "../../assets/images/team_images/teamF.png";
 import MultiCarousel from "../crousel/MultiCarousel";
 
 const teams = [
-  { teamPics: teamPicA, name: "Rina Bobner", Position: "Hr team lead" },
-  { teamPics: teamPicB, name: "Rina Bobner", Position: "Product Manager" },
-  { teamPics: teamPicC, name: "Rina Bobner", Position: "Sales Manager" },
-  { teamPics: teamPicD, name: "Rina Bobner", Position: "Product Team lead" },
-  { teamPics: teamPicE, name: "Rina Bobner", Position: "It Security Lead" },
-  { teamPics: teamPicF, name: "Rina Bobner", Position: "My bob" },
+  { teamPics: teamPicA, name: "George Black", Position: "Hr team lead" },
+  {
+    teamPics: teamPicB,
+    name: "Stephanie Ley",
+    Position: "Product Manager",
+  },
+  { teamPics: teamPicC, name: "Mike Clark", Position: "Sales Manager" },
+  { teamPics: teamPicD, name: "John Doe", Position: "Product Team lead" },
+  { teamPics: teamPicE, name: "Sansa Stark", Position: "It Security Lead" },
+  { teamPics: teamPicF, name: "Natalie Bormer", Position: "My bob" },
 ];
 
 export default function Team() {

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import xss from "xss";
 import { trimWhiteSpace } from "../../utils/textUtils";
 import spinner from "../../assets/images/spin.svg";
+import Toast from "../toast/Toast";
 
 export default function SignUp() {
   const [passwordError, setPasswordError] = useState("");
@@ -152,7 +153,22 @@ export default function SignUp() {
             )}
           </button>
         </div>
-        {error && <p className="text-danger mt-4 text-center my-0">{error}</p>}
+        {error ? (
+          <Toast subject="Error" textMessage={error} className="bg-light-red" />
+        ) : (
+          <Toast
+            subject="Success"
+            textMessage="login with user credentials"
+            className="bg-light-green"
+          />
+        )}
+        {/* {error ? (
+          <p className="text-danger mt-4 text-center my-0">{error}</p>
+        ) : (
+          <p className="p-2 bg-success mt-2 w-50 mx-auto text-white text-center">
+            Signup successful please logn with user email and password
+          </p>
+        )} */}
       </form>
     </>
   );

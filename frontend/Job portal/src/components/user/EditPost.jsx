@@ -1,62 +1,80 @@
 import { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import { useDispatch, useSelector } from "react-redux";
-import { postData } from "../../features/jobSlice";
-postData;
+import Toast from "../toast/Toast";
 import spinner from "../../assets/images/spin.svg";
 import xss from "xss";
 import { trimWhiteSpace } from "../../utils/textUtils";
-import Toast from "../toast/Toast";
+import { updateData } from "../../features/jobSlice";
 
-export default function CreateJob() {
+EditPost.propTypes = {
+  userId: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  description: PropTypes.string.isRequired,
+  createdBy: PropTypes.string.isRequired,
+  company: PropTypes.string.isRequired,
+  level: PropTypes.string.isRequired,
+  location: PropTypes.string.isRequired,
+  requirement: PropTypes.string.isRequired,
+  benefits: PropTypes.string.isRequired,
+};
+
+export default function EditPost({
+  userId,
+  title,
+  description,
+  createdBy,
+  company,
+  level,
+  location,
+  requirement,
+  benefits,
+}) {
   const [showToast, setShowToast] = useState(false);
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.users);
   const { error, pending, success } = useSelector((state) => state.jobs);
+  const dispatch = useDispatch();
 
-  const handleAddJob = (e) => {
+  const handleEditpost = (e) => {
     e.preventDefault();
 
     const formData = new FormData(e.target);
-    const newPost = {
-      userId: xss(trimWhiteSpace(user._id)),
+
+    const updatedPost = {
       title: xss(trimWhiteSpace(formData.get("title"))),
       description: xss(trimWhiteSpace(formData.get("description"))),
-      createBy: xss(trimWhiteSpace(user.firstName)),
-      company: xss(trimWhiteSpace(user.company)),
-      location: xss(trimWhiteSpace(user.location)),
-      level: xss(trimWhiteSpace(formData.get("level"))),
+      createBy: xss(trimWhiteSpace(formData.get("createBy"))),
+      company: xss(trimWhiteSpace(formData.get("company"))),
+      location: xss(trimWhiteSpace(formData.get("location"))),
+      level: level || xss(trimWhiteSpace(formData.get("level"))),
       requirement: xss(trimWhiteSpace(formData.get("requirement"))),
       benefits: xss(trimWhiteSpace(formData.get("benefits"))),
     };
 
-    dispatch(postData(newPost));
-    console.log(`New job posted`);
+    console.log(`Edit`);
 
-    e.target.reset();
+    dispatch(updateData({ id: userId, updateData: updatedPost }));
+
+    console.log(`Update post click`);
+
+    setShowToast(true);
   };
 
-  // if (!pending && !error) {
-  //   console.log(`Create post NO pending, No Error`);
-  // }
-  // if (success) {
-  //   setSuccesful(true);
-  // }
-
   useEffect(() => {
-    if (success || error) {
-      setShowToast(true);
+    // if (success || error) {
+    //   setShowToast(true);
 
-      const timer = setTimeout(() => {
-        setShowToast(false);
-      }, 15000);
+    const timer = setTimeout(() => {
+      setShowToast(false);
+    }, 10000);
 
-      return () => clearTimeout(timer); // Cleanup timer
-    }
+    return () => clearTimeout(timer); // Cleanup timer
+    // }
   }, [success, error]);
 
   return (
-    <>
-      <form className="w-75 mx-auto mt-4" onSubmit={handleAddJob}>
+    <div>
+      <form className="w-100 mx-auto mt-4" onSubmit={handleEditpost}>
+        <h2 className="mb-4">Edit job post</h2>
         <div className="mb-3">
           <div className="row">
             <div className="col">
@@ -69,10 +87,10 @@ export default function CreateJob() {
                 id="title"
                 placeholder="Software Developer"
                 name="title"
-                required
+                defaultValue={title}
               />
             </div>
-            {/* <div className="col">
+            <div className="col">
               <label htmlFor="creater" className="form-label">
                 Creater
               </label>
@@ -82,12 +100,12 @@ export default function CreateJob() {
                 id="creater"
                 placeholder="Creater's name "
                 name="createBy"
-                required
+                defaultValue={createdBy}
               />
-            </div> */}
+            </div>
           </div>
         </div>
-        {/* <div className="mb-3">
+        <div className="mb-3">
           <label htmlFor="company" className="form-label">
             Company
           </label>
@@ -97,10 +115,10 @@ export default function CreateJob() {
             id="company"
             placeholder="Name of organization"
             name="company"
-            // required
+            defaultValue={company}
           />
-        </div> */}
-        {/* <div className="mb-3">
+        </div>
+        <div className="mb-3">
           <label htmlFor="location" className="form-label">
             Location
           </label>
@@ -110,9 +128,9 @@ export default function CreateJob() {
             id="location"
             placeholder="Add location"
             name="location"
-            // required
+            defaultValue={location}
           />
-        </div> */}
+        </div>
         <div className="mb-3">
           <label htmlFor="level" className="form-label">
             Select level
@@ -128,14 +146,6 @@ export default function CreateJob() {
             <option value="Intermediate">Intermediate</option>
             <option value="Senior">Senior</option>
           </select>
-          {/* <input
-            type="text"
-            className="form-control"
-            id="level"
-            placeholder="Senior | Mid-level | Junior level"
-            name="level"
-            required
-          /> */}
         </div>
         <div className="mb-3">
           <label htmlFor="description" className="form-label">
@@ -146,7 +156,7 @@ export default function CreateJob() {
             id="description"
             rows="2"
             name="description"
-            required
+            defaultValue={description}
           ></textarea>
         </div>
         <div className="mb-3">
@@ -158,7 +168,7 @@ export default function CreateJob() {
             id="requirement"
             rows="2"
             name="requirement"
-            required
+            defaultValue={requirement}
           ></textarea>
         </div>
         <div className="mb-3">
@@ -170,7 +180,7 @@ export default function CreateJob() {
             id="benefits"
             rows="2"
             name="benefits"
-            required
+            defaultValue={benefits}
           ></textarea>
         </div>
         <div className="pt-3">
@@ -181,7 +191,7 @@ export default function CreateJob() {
           >
             {pending ? (
               <p className="mb-0">
-                Add new posting
+                Updating....
                 <span>
                   <img
                     className="ms-2"
@@ -192,7 +202,7 @@ export default function CreateJob() {
                 </span>
               </p>
             ) : (
-              "Add new job Post"
+              "Submit edited form"
             )}
           </button>
         </div>
@@ -201,11 +211,11 @@ export default function CreateJob() {
         ) : showToast && success ? (
           <Toast
             subject="Success"
-            textMessage="Added new job post"
+            textMessage="Update successful"
             className="bg-light-green"
           />
         ) : null}
       </form>
-    </>
+    </div>
   );
 }

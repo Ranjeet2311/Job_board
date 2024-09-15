@@ -3,12 +3,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import spinner from "../../assets/images/spin.svg";
+import Toast from "../toast/Toast";
 
 export default function Login() {
   const loginForm = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  // const [signupSuccess, setSignupSuccess] = useState(false);
 
   const { loading, isLoggedIn, error } = useSelector((state) => state.users);
 
@@ -26,9 +26,6 @@ export default function Login() {
     if (isLoggedIn) {
       return navigate("/mylisting");
     }
-
-    // const signupSuccess = localStorage.getItem("sigupStat");
-    // setSignupSuccess(signupSuccess);
   }, [isLoggedIn, navigate]);
 
   return (
@@ -83,8 +80,14 @@ export default function Login() {
             )}
           </button>
         </div>
-        {error && (
-          <p className="text-danger mt-4 text-center my-0"> {error} </p>
+        {error ? (
+          <Toast subject="Error" textMessage={error} className="bg-light-red" />
+        ) : (
+          <Toast
+            subject=" "
+            textMessage="Login with user credentials"
+            className="bg-light-green"
+          />
         )}
         {/* {signupSuccess && (
           <p className="p-2 bg-success mt-2 w-50 mx-auto text-white text-center">

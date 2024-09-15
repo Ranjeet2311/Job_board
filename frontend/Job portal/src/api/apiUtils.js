@@ -56,6 +56,27 @@ export const deleteJobs = async (id) => {
   }
 };
 
+export const updateJobs = async (id, updateJob) => {
+  try {
+    const response = await fetch(`/api/jobs/${id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updateJob),
+    });
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(errorData.message || "Couldn't update the selected job");
+    }
+    const data = await response.json();
+    console.log(`post data :: `, data);
+  } catch (error) {
+    console.log(`Patch jobs ApiUtil : `, error.message);
+    throw error;
+  }
+};
+
 // ---------User------------
 
 export const userLogin = async (logInData) => {

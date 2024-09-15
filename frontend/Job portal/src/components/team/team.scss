@@ -6,6 +6,11 @@
 .team-slider {
   .react-multi-carousel-list {
     height: 340px;
+
+    .react-multi-carousel-item {
+      display: flex;
+      justify-content: center;
+    }
     .react-multi-carousel-track {
       .slider_image {
         height: 100%;

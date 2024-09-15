@@ -12,7 +12,7 @@ export default function SignUpPage() {
             <img src={userImage} alt="user" className="user" />
           </div>
           <div className="col-12 col-md-6">
-            <h2 className="text-center mb-4">Sign up</h2>
+            <h2 className="text-center">Sign up</h2>
             <SignUp />
             <p className="text-center mt-4">
               Have account?

@@ -5,13 +5,16 @@ import localtion from "../../assets/images/location.svg";
 import post from "../../assets/images/post.svg";
 import user from "../../assets/images/user.svg";
 import code from "../../assets/images/code.svg";
+import calender from "../../assets/images/calender.svg";
 import { Link } from "react-router-dom";
+import { format } from "date-fns";
 
 SingleJob.propTypes = {
   pageLink: PropTypes.string.isRequired,
   title: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   createdBy: PropTypes.string.isRequired,
+  createdAt: PropTypes.string.isRequired,
   company: PropTypes.string.isRequired,
   level: PropTypes.string.isRequired,
   location: PropTypes.string.isRequired,
@@ -24,18 +27,19 @@ export default function SingleJob({
   title,
   description,
   createdBy,
+  createdAt,
   company,
   level,
   location,
   requirement,
   // benefits,
 }) {
-  const shortDescription = truncateText(description, 120);
-  const shortRequirement = truncateText(requirement, 130);
-  const shortLocation = truncateText(location, 6);
+  const shortDescription = truncateText(description, 80);
+  const shortRequirement = truncateText(requirement, 80);
+  const shortLocation = truncateText(location, 30);
 
   return (
-    <Link to={pageLink} className="job-item px-3 px-md-4">
+    <Link to={pageLink} className="job-item px-md-4">
       <h2 className="title text-start">{title}</h2>
       <p className="description">
         Description:
@@ -61,6 +65,12 @@ export default function SingleJob({
           <span> {level}</span>
         </div>
         <div className="description col-6 d-flex align-items-center  mb-0">
+          <span>
+            <img src={calender} alt="location-icon" className="mb-0" />
+          </span>
+          <span>{format(new Date(createdAt), "do MMMM")} </span>
+        </div>
+        <div className="description col-12 d-flex align-items-center  mb-0">
           <span>
             <img src={localtion} alt="location-icon" className="mb-0" />
           </span>

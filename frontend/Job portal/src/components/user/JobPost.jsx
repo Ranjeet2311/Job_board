@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Accordian from "../accordian/Accordian";
 import trashIcon from "../../assets/images/trash.svg";
@@ -10,9 +11,10 @@ import post from "../../assets/images/post.svg";
 import code from "../../assets/images/code.svg";
 import calender from "../../assets/images/calender.svg";
 import localtion from "../../assets/images/location.svg";
+import close from "../../assets/images/close.svg";
 import Button from "../buttons/Button";
-import { useEffect } from "react";
 import { format } from "date-fns";
+import EditPost from "./EditPost";
 
 JobPost.propTypes = {
   userId: PropTypes.string.isRequired,
@@ -39,6 +41,7 @@ export default function JobPost({
   benefits,
   createdAt,
 }) {
+  const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
 
   const handleDelete = () => {
@@ -48,6 +51,11 @@ export default function JobPost({
   };
   const handleEdit = () => {
     console.log(`Delete userId : `, userId);
+    setShowModal(true);
+  };
+
+  const hideMOdal = () => {
+    setShowModal(false);
   };
 
   useEffect(() => {
@@ -119,25 +127,54 @@ export default function JobPost({
           </div>
         </div>
         <div className="row mt-4">
-          <div className="col-12 col-lg-4 d-flex justify-content-end">
+          <div className="col-12 mb-4">
+            <h2>Post related actions</h2>
+          </div>
+          <div className="col-12 col-lg-4 d-flex">
             <Button
-              className="btn me-4 btn-white w-100"
+              className="btn btn-white w-100"
               isLInk={false}
               onButtonClick={handleDelete}
             >
               <img height={20} src={trashIcon} alt="trash-icon" />
             </Button>
+          </div>
+          <div className="col-12 col-lg-4 d-flex">
             <Button
               isLInk={false}
-              className="btn btn-white w-100"
-              to="/"
+              className="btn btn-white mx-4 w-100"
               onButtonClick={handleEdit}
             >
               <img height={20} src={editIcon} alt="edit-icon" />
             </Button>
           </div>
+          <div className="col-12 col-lg-4 d-flex">
+            {showModal && (
+              <Button
+                isLInk={false}
+                className="btn btn-white w-100"
+                onButtonClick={hideMOdal}
+              >
+                <img height={20} src={close} alt="edit-icon" />
+              </Button>
+            )}
+          </div>
         </div>
       </Accordian>
+
+      {showModal && (
+        <EditPost
+          userId={userId}
+          title={title}
+          description={description}
+          createdBy={createdBy}
+          company={company}
+          level={level}
+          location={location}
+          requirement={requirement}
+          benefits={benefits}
+        />
+      )}
     </div>
   );
 }

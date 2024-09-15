@@ -19,3 +19,21 @@
 .page-wrap {
   margin-top: 80px;
 }
+
+.bg-light-green {
+  background: #2fc904 !important;
+}
+.bg-light-red {
+  background: #dc1f1f !important;
+}
+
+.toast {
+  p {
+    font-size: 16px !important;
+  }
+
+  .btn-close {
+    width: 25px !important;
+    height: 25px !important;
+  }
+}
