@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import "./JobsList.scss";
-import SingleJob from "../singleJob/singleJob";
+import SingleJob from "../singleJob/SingleJob";
 
 export default function JobsList() {
   const { jobs } = useSelector((state) => state.jobs);
