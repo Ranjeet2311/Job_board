@@ -10,13 +10,13 @@ Hero.propTypes = {
 
 export default function Hero({ img, title, para, showBtn }) {
   return (
-    <div className="row home-hero">
+    <div className="row hero">
       <div className="col-12 col-md-6">
         <h1> {title} </h1>
         <p className="desc"> {para} </p>
         {showBtn && (
           <div className="row justify-content-start">
-            <div className="col-12 col-md-6">
+            <div className="col-12 col-md-6 mb-3 mb-md-0">
               <Button
                 style={{
                   padding: "12px 20px",
@@ -48,7 +48,7 @@ export default function Hero({ img, title, para, showBtn }) {
         )}
       </div>
 
-      <div className="col-12 col-md-6 hero_img">
+      <div className="col-12 col-md-6 hero_img my-4 my-md-0">
         <img src={img} alt="hero image" />
       </div>
     </div>

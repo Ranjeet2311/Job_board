@@ -1,17 +1,17 @@
 import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import Accordian from "../accordian/Accordian";
-import trashIcon from "../../assets/images/trash.svg";
-import editIcon from "../../assets/images/edit.svg";
+import trashIcon from "../../assets/images/trash.png";
+import editIcon from "../../assets/images/edit.png";
 import { useDispatch } from "react-redux";
 import { deleteData, fetchJobs } from "../../features/jobSlice";
 import "./user.scss";
-import post from "../../assets/images/post.svg";
+import post from "../../assets/images/post.png";
 // import user from "../../assets/images/user.svg";
-import code from "../../assets/images/code.svg";
-import calender from "../../assets/images/calender.svg";
-import localtion from "../../assets/images/location.svg";
-import close from "../../assets/images/close.svg";
+import code from "../../assets/images/code.png";
+import calender from "../../assets/images/calendar.png";
+import localtion from "../../assets/images/location.png";
+import close from "../../assets/images/close.png";
 import Button from "../buttons/Button";
 import { format } from "date-fns";
 import EditPost from "./EditPost";
@@ -139,7 +139,7 @@ export default function JobPost({
               <img height={20} src={trashIcon} alt="trash-icon" />
             </Button>
           </div>
-          <div className="col-12 col-lg-4 d-flex">
+          <div className="col-12 col-lg-4 d-flex my-4 my-lg-0">
             <Button
               isLInk={false}
               className="btn btn-white mx-4 w-100"

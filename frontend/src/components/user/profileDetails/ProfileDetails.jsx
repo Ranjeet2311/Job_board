@@ -1,8 +1,8 @@
 import { useSelector } from "react-redux";
 import avatar from "../../../assets/images/avatar.png";
-import localtion from "../../../assets/images/location.svg";
-import email from "../../../assets/images/email.svg";
-import store from "../../../assets/images/store.svg";
+import localtion from "../../../assets/images/location.png";
+import email from "../../../assets/images/email.png";
+import store from "../../../assets/images/store.png";
 import "./profile-details.scss";
 
 export default function ProfileDetails() {

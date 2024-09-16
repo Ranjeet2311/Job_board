@@ -17,7 +17,7 @@ $screen-xl: 1199px;
 $screen-xxl: 1399px;
 
 @mixin xs {
-  @media (max-width: #{$screen-xs}) {
+  @media (min-width: #{$screen-xs}) {
     @content;
   }
 }
@@ -64,44 +64,66 @@ h6 {
 }
 
 h1 {
-  font-size: 60px !important;
-  line-height: 62px !important;
+  font-size: 30px !important;
+  line-height: 32px !important;
   font-weight: 700 !important;
 
   @include md {
-    font-size: 40px;
-    line-height: 42px;
+    font-size: 40px !important;
+    line-height: 42px !important;
+  }
+  @include lg {
+    font-size: 60px !important;
+    line-height: 62px !important;
+    font-weight: 700 !important;
   }
 }
 h2 {
-  font-size: 50px !important;
-  line-height: 52px;
+  font-size: 20px !important;
+  line-height: 22px !important;
 
   @include md {
-    font-size: 30px;
-    line-height: 32px;
+    font-size: 30px !important;
+    line-height: 32px !important;
+  }
+  @include lg {
+    font-size: 50px !important;
+    line-height: 52px !important;
   }
 }
 h3 {
-  font-size: 40px;
-  line-height: 42px;
+  font-size: 20px;
+  line-height: 22px;
 
   @include md {
-    font-size: 30px;
-    line-height: 22px;
+    font-size: 30px !important;
+    line-height: 32px !important;
+  }
+  @include lg {
+    font-size: 40px !important;
+    line-height: 42px !important;
   }
 }
 h4 {
-  font-size: 30px;
-  line-height: 32px;
+  font-size: 20px;
+  line-height: 22px;
 
-  @include md {
-    font-size: 20px;
-    line-height: 22px;
+  @include lg {
+    font-size: 30px !important;
+    line-height: 32px !important;
   }
 }
 
 p {
-  font-size: 18px !important;
-  line-height: 28px !important;
+  font-size: 16px !important;
+  line-height: 20px !important;
+
+  @include md {
+    font-size: 18px !important;
+    line-height: 22px !important;
+  }
+  @include lg {
+    font-size: 20px !important;
+    line-height: 24px !important;
+  }
 }

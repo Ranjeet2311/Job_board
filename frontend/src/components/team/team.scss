@@ -5,7 +5,11 @@
 // }
 .team-slider {
   .react-multi-carousel-list {
-    height: 340px;
+    height: 240px;
+
+    @include md {
+      height: 340px;
+    }
 
     .react-multi-carousel-item {
       display: flex;

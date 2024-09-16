@@ -1,13 +1,13 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import "./navbar.scss";
-import userIcon from "../../assets/images/user.svg";
-import addNewIcon from "../../assets/images/file-add.svg";
-import logInIcon from "../../assets/images/log-in.svg";
-import logOutIcon from "../../assets/images/log-out.svg";
-import listIcon from "../../assets/images/list.svg";
+import userIcon from "../../assets/images/user.png";
+import addNewIcon from "../../assets/images/file-add.png";
+import logInIcon from "../../assets/images/log-in.png";
+import logOutIcon from "../../assets/images/log-out.png";
+import listIcon from "../../assets/images/list.png";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../../features/userSlice";
-import logo from "../../assets/images/logo.svg";
+import logo from "../../assets/images/logo.png";
 import avatar from "../../assets/images/avatar.png";
 
 const routes = [

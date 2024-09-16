@@ -32,7 +32,7 @@ export default function Home() {
         Keep track of office numbers, book hot desks and sync it all to Outlook, Teams or Google."
         ></Hero>
 
-        <div className="row mt-4">
+        <div className="row home-company">
           <div className="col-12">
             <h4 className="text-center my-4">
               Trusted and loved by companies worldwide.

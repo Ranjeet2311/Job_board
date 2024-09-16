@@ -1,11 +1,11 @@
 import PropTypes from "prop-types";
 import { truncateText } from "../../utils/textUtils";
 import "./singleJob.scss";
-import localtion from "../../assets/images/location.svg";
-import post from "../../assets/images/post.svg";
-import user from "../../assets/images/user.svg";
-import code from "../../assets/images/code.svg";
-import calender from "../../assets/images/calender.svg";
+import localtion from "../../assets/images/location.png";
+import post from "../../assets/images/post.png";
+import user from "../../assets/images/user.png";
+import code from "../../assets/images/code.png";
+import calender from "../../assets/images/calendar.png";
 import { Link } from "react-router-dom";
 import { format } from "date-fns";
 
@@ -48,25 +48,25 @@ export default function SingleJob({
       <div className="row my-2 card-mid">
         <div className="description col-6 d-flex align-items-center mb-0">
           <span>
-            <img src={user} alt="location-icon" className="mb-0" />
+            <img src={user} alt="user-icon" className="mb-0" />
           </span>
           <span> {createdBy}</span>
         </div>
         <div className="description col-6 d-flex align-items-center mb-0">
           <span>
-            <img src={post} alt="location-icon" className="mb-0" />
+            <img src={post} alt="company-icon" className="mb-0" />
           </span>
           <span> {company}</span>
         </div>
         <div className="description col-6 d-flex align-items-center  mb-0">
           <span>
-            <img src={code} alt="location-icon" className="mb-0" />
+            <img src={code} alt="code-icon" className="mb-0" />
           </span>
           <span> {level}</span>
         </div>
         <div className="description col-6 d-flex align-items-center  mb-0">
           <span>
-            <img src={calender} alt="location-icon" className="mb-0" />
+            <img src={calender} alt="calendar-icon" className="mb-0" />
           </span>
           <span>{format(new Date(createdAt), "do MMMM")} </span>
         </div>

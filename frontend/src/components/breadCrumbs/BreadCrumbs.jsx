@@ -1,6 +1,5 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-import arrowIcon from "../../assets/images/arrow-back-.svg";
 
 BreadCrumbs.propTypes = {
   backText: PropTypes.string.isRequired,
@@ -12,7 +11,7 @@ BreadCrumbs.propTypes = {
 export default function BreadCrumbs({ backText, backLink, jobTitle, jobLink }) {
   return (
     <div className="text-center mb-3 d-flex align-items-center btn  mt-0 p-2 w-100">
-      <img height={20} src={arrowIcon} alt="back arrow" />
+      {/* <img height={20} src={arrowIcon} alt="back arrow" /> */}
       <Link
         className="text-decoration-none btn-blue px-3 py-1  rounded"
         to={backLink}

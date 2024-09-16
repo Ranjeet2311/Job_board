@@ -16,7 +16,7 @@ export default function About() {
           title="Empowering others"
           para="Microsoft creates platforms and tools powered by AI to deliver innovative solutions that meet the evolving needs of our customers. The technology company is committed to making AI available broadly and doing so responsibly, with a mission to empower every person and every organization on the planet to achieve more."
         />
-        <div className="row mt-4">
+        <div className="row">
           <div className="col-12">
             <h2 className="mb-4">Make the most of life</h2>
             <p>

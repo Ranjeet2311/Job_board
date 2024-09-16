@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import closeIcon from "../../assets/images/close.svg";
+import closeIcon from "../../assets/images/close.png";
 
 Toast.propTypes = {
   subject: PropTypes.string.isRequired,

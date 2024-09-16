@@ -19,11 +19,11 @@
 
         &::after {
           filter: invert(1);
-          background-image: url("../../assets/images/arrow_down.svg") !important;
+          background-image: url("../../assets/images/arrow_down.png") !important;
         }
 
         &:not(.collapsed)::after {
-          background-image: url("../../assets/images/arrow_up.svg") !important;
+          background-image: url("../../assets/images/arrow_up.png") !important;
         }
 
         @include md {

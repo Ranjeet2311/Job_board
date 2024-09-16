@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import Button from "../buttons/Button";
+import refreshImg from "../../assets/images/refresh.png";
 import "./filter-section.scss";
 import {
   fetchJobs,
@@ -45,6 +46,13 @@ export default function JobFilter({ refreshBtn, sortBtn, total }) {
               isLInk={false}
               className="btn-blue"
             >
+              <span>
+                <img
+                  src={refreshImg}
+                  alt="refresh"
+                  className="image_filter me-2"
+                />
+              </span>
               Refresh job list
             </Button>
           </div>
