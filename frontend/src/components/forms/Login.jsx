@@ -1,11 +1,15 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { login } from "../../features/userSlice";
 import { useNavigate } from "react-router-dom";
 import spinner from "../../assets/images/spin.svg";
 import Toast from "../toast/Toast";
+import visible from "../../assets/images/visible.png";
+import invisible from "../../assets/images/invisible.png";
 
 export default function Login() {
+  const [visibility, setVisibility] = useState(false);
+
   const loginForm = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -20,6 +24,11 @@ export default function Login() {
     const user = { email, password };
 
     dispatch(login(user));
+  };
+
+  const handlePasswordDisplay = () => {
+    console.log(`handlePasswordDisplay`);
+    setVisibility(!visibility);
   };
 
   useEffect(() => {
@@ -45,11 +54,22 @@ export default function Login() {
           />
         </div>
         <div className="col-12 col-lg-6">
-          <label htmlFor="creater" className="form-label">
+          <label
+            htmlFor="creater"
+            className="form-label"
+            onClick={handlePasswordDisplay}
+          >
             Password
+            <span className="ms-3">
+              {visibility ? (
+                <img src={visible} alt="visible-icon" className="visible" />
+              ) : (
+                <img src={invisible} alt="invisible-icon" className="visible" />
+              )}
+            </span>
           </label>
           <input
-            type="password"
+            type={visibility ? "text" : "password"}
             className="form-control"
             id="password"
             placeholder="Password"

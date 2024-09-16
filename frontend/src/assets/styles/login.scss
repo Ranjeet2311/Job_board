@@ -1,3 +1,5 @@
+@import "../../assets/styles/css-variables.scss";
+
 .login-user {
   .user {
     margin-top: 30px;
@@ -14,6 +16,19 @@ form {
 
   label {
     font-weight: 700;
+  }
+
+  input {
+    margin-bottom: 20px;
+
+    @include md {
+      margin-bottom: 10px;
+    }
+  }
+
+  .visible {
+    width: 18px;
+    cursor: pointer;
   }
 
   button {

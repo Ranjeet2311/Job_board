@@ -1,8 +1,17 @@
 import Metadata from "../components/metadata/Metadata";
 import Listing from "../components/user/Listing";
 import JobFilter from "../components/jobFilter/JobFilter";
+import { useDispatch } from "react-redux";
+import { useEffect } from "react";
+import { fetchJobs } from "../features/jobSlice";
 
 export default function MyListing() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchJobs());
+  }, [dispatch]);
+
   return (
     <>
       <Metadata title="My listings" description="Empowering others" />

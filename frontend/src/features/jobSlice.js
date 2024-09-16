@@ -92,11 +92,20 @@ export const jobSlice = createSlice({
   initialState,
   reducers: {
     hideToast: (state) => {
-      setTimeout(() => {
-        state.success = !state.success;
-      }, 1500);
-
+      state.success = false;
       console.log(`Hide toast clicked`);
+    },
+
+    removeDeletedJob: (state, action) => {
+      console.log(`removeDeletedJob clicked, `);
+      const filterdData = [...state.jobs].filter((item) => {
+        console.log(`action.payload : `, action.payload);
+        console.log(` item.userId : `, item.title);
+
+        item.title !== action.payload;
+      });
+
+      console.log(`filterdData :: `, filterdData);
     },
 
     sortByAlphabeticalOrderAToZ: (state) => {
@@ -260,5 +269,6 @@ export const {
   sortByAlphabeticalOrderAToZ,
   sortByAlphabeticalOrderZToA,
   sortByTimestamp,
+  removeDeletedJob,
 } = jobSlice.actions;
 export default jobSlice.reducer;

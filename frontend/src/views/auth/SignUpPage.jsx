@@ -16,7 +16,10 @@ export default function SignUpPage() {
             <SignUp />
             <p className="text-center mt-4">
               Have account?
-              <Link to="/login" className="btn fw-bold ms-2 cursor-pointer">
+              <Link
+                to="/login"
+                className="btn btn-white fw-bold ms-2 cursor-pointer"
+              >
                 Login
               </Link>
             </p>
