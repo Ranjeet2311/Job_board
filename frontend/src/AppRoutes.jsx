@@ -12,10 +12,12 @@ import JobsPage from "./views/JobsPage";
 import JobDetails from "./views/JobDetails";
 import Career from "./views/Career";
 import About from "./views/About";
+import { TrackPageView } from "./App";
 
 export default function AppRoutes() {
   return (
     <Router>
+      <TrackPageView />
       <Navbar />
       <Routes>
         <Route index element={<Home />} />
