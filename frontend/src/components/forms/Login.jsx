@@ -9,12 +9,15 @@ import invisible from "../../assets/images/invisible.png";
 
 export default function Login() {
   const [visibility, setVisibility] = useState(false);
+  const [showToast, setShowToast] = useState(false);
 
   const loginForm = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, isLoggedIn, error } = useSelector((state) => state.users);
+  const { loading, isLoggedIn, error, success } = useSelector(
+    (state) => state.users
+  );
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -35,7 +38,15 @@ export default function Login() {
     if (isLoggedIn) {
       return navigate("/mylisting");
     }
-  }, [isLoggedIn, navigate]);
+
+    if (error || success) {
+      setShowToast(true);
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000); // Hide toast after 3 seconds
+      return () => clearTimeout(timer); // Clear timeout when component unmounts or if error/success changes
+    }
+  }, [isLoggedIn, navigate, error, success]);
 
   return (
     <form onSubmit={handleLogin} ref={loginForm}>
@@ -100,20 +111,16 @@ export default function Login() {
             )}
           </button>
         </div>
-        {error ? (
+        {showToast && error && (
           <Toast subject="Error" textMessage={error} className="bg-light-red" />
-        ) : (
+        )}
+        {showToast && success && (
           <Toast
-            subject=" "
-            textMessage="Login with user credentials"
+            subject="Success"
+            textMessage="Logged in successfully"
             className="bg-light-green"
           />
         )}
-        {/* {signupSuccess && (
-          <p className="p-2 bg-success mt-2 w-50 mx-auto text-white text-center">
-            Signup successful please logn with user email and password
-          </p>
-        )} */}
       </div>
     </form>
   );

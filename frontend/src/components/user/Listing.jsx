@@ -11,7 +11,7 @@ export default function Listing() {
 
   return (
     <div className="user_list">
-      {userPostings &&
+      {userPostings && userPostings.length ? (
         userPostings.map((post) => {
           return (
             <>
@@ -30,7 +30,17 @@ export default function Listing() {
               />
             </>
           );
-        })}
+        })
+      ) : (
+        <>
+          <p className="text-success mb-4 text-center fw-bold">
+            Welcome🎉,Thank you for creating your account!
+          </p>
+          <h4 className="text-center text-primary">
+            🙏 Add your first job post
+          </h4>
+        </>
+      )}
     </div>
   );
 }

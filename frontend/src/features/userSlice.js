@@ -8,6 +8,7 @@ const initialState = {
   isLoggedIn: false,
   loading: false,
   signup: null,
+  success: false,
 };
 
 export const login = createAsyncThunk(
@@ -58,6 +59,7 @@ export const userSlice = createSlice({
       .addCase(login.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.success = false;
         // console.log("State login slice pending");
       })
       .addCase(login.fulfilled, (state, action) => {
@@ -65,17 +67,21 @@ export const userSlice = createSlice({
         state.isLoggedIn = true;
         state.user = action.payload.user.foundUser;
         state.token = action.payload.token;
+        state.error = null;
+        state.success = true;
         // console.log("State login slice fulfilled");
       })
       .addCase(login.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.success = false;
         // console.log("State login slice rejected action:", action);
         // console.log("State login slice rejected:", action.payload);
       })
       .addCase(register.pending, (state) => {
         state.loading = true;
         state.error = null;
+        state.success = false;
         console.log("State register slice pending");
       })
       .addCase(register.fulfilled, (state, action) => {
@@ -84,12 +90,15 @@ export const userSlice = createSlice({
         state.signup = true;
         state.user = action.payload;
         state.token = action.payload.token;
+        state.error = null;
+        state.success = true;
         // console.log("State register slice fulfilled");
         // console.log("State register slice fulfilled : ", state.user);
       })
       .addCase(register.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.success = false;
         // console.log("State register slice rejected action:", action);
         // console.log("State register slice rejected:", action.payload);
       });

@@ -1,4 +1,4 @@
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { register } from "../../features/userSlice";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
@@ -12,11 +12,13 @@ import invisible from "../../assets/images/invisible.png";
 export default function SignUp() {
   const [visibility, setVisibility] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+  const [showToast, setShowToast] = useState(false);
+
   const signupForm = useRef(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const { loading, error, signup } = useSelector((state) => state.users);
+  const { loading, error, success } = useSelector((state) => state.users);
 
   const handleSignup = (e) => {
     e.preventDefault();
@@ -38,10 +40,10 @@ export default function SignUp() {
       dispatch(register(newUser));
       localStorage.setItem("sigupStat", true);
 
-      if (!loading) {
-        console.log(`signup : `, signup);
-        navigate("/login");
-      }
+      // if (!error && success) {
+      //   console.log(`signup : `, signup);
+      //   navigate("/login");
+      // }
     }
     console.log(`Sign Up completed`);
   };
@@ -50,6 +52,23 @@ export default function SignUp() {
     console.log(`handlePasswordDisplay`);
     setVisibility(!visibility);
   };
+
+  useEffect(() => {
+    if (error || success) {
+      setShowToast(true);
+      const timer = setTimeout(() => {
+        setShowToast(false);
+      }, 3000); // Hide toast after 3 seconds
+      return () => clearTimeout(timer); // Cleanup timeout
+    }
+  }, [error, success]);
+
+  useEffect(() => {
+    if (success && !error) {
+      console.log("Navigating to login");
+      navigate("/login");
+    }
+  }, [success, error, navigate]);
 
   return (
     <>
@@ -176,22 +195,16 @@ export default function SignUp() {
             )}
           </button>
         </div>
-        {error ? (
+        {showToast && error && (
           <Toast subject="Error" textMessage={error} className="bg-light-red" />
-        ) : (
+        )}
+        {showToast && success && (
           <Toast
             subject="Success"
-            textMessage="login with user credentials"
+            textMessage="Registered successfully"
             className="bg-light-green"
           />
         )}
-        {/* {error ? (
-          <p className="text-danger mt-4 text-center my-0">{error}</p>
-        ) : (
-          <p className="p-2 bg-success mt-2 w-50 mx-auto text-white text-center">
-            Signup successful please logn with user email and password
-          </p>
-        )} */}
       </form>
     </>
   );

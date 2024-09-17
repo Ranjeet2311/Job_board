@@ -1,9 +1,19 @@
 @import "../../assets/styles/css-variables.scss";
 
 .login-user {
-  .user {
-    margin-top: 30px;
+  height: 200px;
+
+  @include md {
+    height: 300px;
+  }
+  @include lg {
     width: 400px;
+  }
+  .user {
+    height: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
   }
 }
 

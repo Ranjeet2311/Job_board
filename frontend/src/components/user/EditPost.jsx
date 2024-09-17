@@ -210,8 +210,8 @@ export default function EditPost({
           <Toast subject="Error" textMessage={error} className="bg-light-red" />
         ) : showToast && success ? (
           <Toast
-            subject="Success"
-            textMessage="Update successful"
+            subject=""
+            textMessage="Update successful !, Please refresh job list"
             className="bg-light-green"
           />
         ) : null}

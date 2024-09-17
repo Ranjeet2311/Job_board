@@ -15,6 +15,7 @@ import close from "../../assets/images/close.png";
 import Button from "../buttons/Button";
 import { format } from "date-fns";
 import EditPost from "./EditPost";
+import { createPortal } from "react-dom";
 
 JobPost.propTypes = {
   userId: PropTypes.string.isRequired,
@@ -46,7 +47,6 @@ export default function JobPost({
 
   const handleDelete = () => {
     dispatch(deleteData(userId));
-
     console.log(`Delete userId :`, userId);
   };
   const handleEdit = () => {
@@ -149,20 +149,50 @@ export default function JobPost({
             </Button>
           </div>
           <div className="col-12 col-lg-4 d-flex">
-            {showModal && (
+            {/* {showModal && (
               <Button
                 isLInk={false}
                 className="btn btn-white w-100"
                 onButtonClick={hideMOdal}
               >
-                <img height={20} src={close} alt="edit-icon" />
+                <img height={20} src={close} alt="edit-icon" /> close
               </Button>
-            )}
+            )} */}
           </div>
         </div>
       </Accordian>
 
-      {showModal && (
+      {showModal &&
+        createPortal(
+          <>
+            <dialog open className="dialog">
+              <div className="editform">
+                <EditPost
+                  userId={userId}
+                  title={title}
+                  description={description}
+                  createdBy={createdBy}
+                  company={company}
+                  level={level}
+                  location={location}
+                  requirement={requirement}
+                  benefits={benefits}
+                />
+                <Button
+                  isLInk={false}
+                  className="btn btn-white w-100"
+                  onButtonClick={hideMOdal}
+                >
+                  <img height={20} src={close} alt="edit-icon" />
+                  <span className="ms-2 text-primary">Close</span>
+                </Button>
+              </div>
+            </dialog>
+          </>,
+          document.getElementById("modal")
+        )}
+
+      {/* {showModal && (
         <EditPost
           userId={userId}
           title={title}
@@ -174,7 +204,7 @@ export default function JobPost({
           requirement={requirement}
           benefits={benefits}
         />
-      )}
+      )} */}
     </div>
   );
 }
